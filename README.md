@@ -2,6 +2,6 @@
 
 mvn package
 
-# Docker
-docker-compose build
-docker-compose up
+# Docker Compose
+	docker-compose build
+    docker-compose up
