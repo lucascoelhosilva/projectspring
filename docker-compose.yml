@@ -8,9 +8,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - DB_USER=template
-      - DB_PASS=template
-      - DB_NAME=template
+      POSTGRES_USER: template
+      POSTGRES_PASSWORD: template
+      POSTGRES_DB: template
   api:
     build: .
     mem_limit: 512m
