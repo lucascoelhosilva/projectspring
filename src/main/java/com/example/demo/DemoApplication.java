@@ -36,7 +36,7 @@ public class DemoApplication {
     public CommandLineRunner commandLineRunner() {
         return args -> {
 
-            repository.deleteAll();
+            /*repository.deleteAll();
 
             repository.save(new Cliente("Alice", 20));
             repository.save(new Cliente("João", 30));
@@ -54,7 +54,7 @@ public class DemoApplication {
 
             System.out.println("Clientes com idade entre 18 and 35:");
             System.out.println("--------------------------------");
-            repository.findByIdadeBetween(18, 35).forEach(System.out::println);
+            repository.findByIdadeBetween(18, 35).forEach(System.out::println);*/
 
             /*System.out.println("Executando serviço pela primeira vez");
             System.out.println(this.exemploService.exemploCache());
