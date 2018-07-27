@@ -39,10 +39,10 @@ public class FuncionarioRepositoryTest {
         this.funcionarioRepository.save(obterDadosFuncionario(empresa));
     }
 
-//    @After
-//    public final void tearDown() {
-//        this.empresaRepository.deleteAll();
-//    }
+    @After
+    public final void tearDown() {
+        this.empresaRepository.deleteAll();
+    }
 
     @Test
     public void testBuscarFuncionarioPorEmail() {
@@ -68,12 +68,14 @@ public class FuncionarioRepositoryTest {
     @Test
     public void testBuscarFuncionarioPorEmailOuCpfParaEmailInvalido() {
         Funcionario funcionario = this.funcionarioRepository.findByCpfOrEmail(CPF, "email@invalido.com");
+
         assertNotNull(funcionario);
     }
 
     @Test
     public void testBuscarFuncionarioPorEmailECpfParaCpfInvalido() {
         Funcionario funcionario = this.funcionarioRepository.findByCpfOrEmail("12345678901", EMAIL);
+
         assertNotNull(funcionario);
     }
 
