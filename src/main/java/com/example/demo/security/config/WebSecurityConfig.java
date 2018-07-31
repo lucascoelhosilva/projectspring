@@ -22,35 +22,36 @@ import com.example.demo.security.filters.JwtAuthenticationTokenFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
+	@Autowired
+	private JwtAuthenticationEntryPoint unauthorizedHandler;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+	@Autowired
+	private UserDetailsService userDetailsService;
 
-    @Autowired
-    public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(this.userDetailsService).passwordEncoder(passwordEncoder());
-    }
+	@Autowired
+	public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		authenticationManagerBuilder.userDetailsService(this.userDetailsService).passwordEncoder(passwordEncoder());
+	}
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-        return new JwtAuthenticationTokenFilter();
-    }
+	@Bean
+	public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
+		return new JwtAuthenticationTokenFilter();
+	}
 
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
-                .antMatchers("/auth/**", "/api/cadastrar-pj", "/api/cadastrar-pf", "/v2/api-docs",
-                        "/swagger-resources/**", "/configuration/security", "/swagger-ui.html", "/webjars/**")
-                .permitAll().anyRequest().authenticated();
-        httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-        httpSecurity.headers().cacheControl();
-    }
+	@Override
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
+		httpSecurity.csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+				.antMatchers("/auth/**", "/api/cadastrar-pj", "/api/cadastrar-pf", "/v2/api-docs",
+						"/swagger-resources/**", "/configuration/security", "/swagger-ui.html", "/webjars/**")
+				.permitAll().anyRequest().authenticated();
+		httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+		httpSecurity.headers().cacheControl();
+	}
+
 }

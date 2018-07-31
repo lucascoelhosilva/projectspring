@@ -21,10 +21,10 @@ public class SwaggerConfig {
 				.apis(RequestHandlerSelectors.basePackage("com.example.demo")).paths(PathSelectors.any()).build()
 				.apiInfo(apiInfo());
 	}
-	
+
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("Swagger API")
 				.description("Documentação da API de acesso aos endpoints com Swagger").version("1.0").build();
 	}
-	
+
 }

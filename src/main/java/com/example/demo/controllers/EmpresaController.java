@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -33,7 +32,7 @@ public class EmpresaController {
 
 	/**
 	 * Retorna uma empresa dado um CNPJ.
-	 *
+	 * 
 	 * @param cnpj
 	 * @return ResponseEntity<Response<EmpresaDto>>
 	 */
@@ -45,7 +44,7 @@ public class EmpresaController {
 
 		if (!empresa.isPresent()) {
 			log.info("Empresa não encontrada para o CNPJ: {}", cnpj);
-			response.getErros().add("Empresa não encontrada para o CNPJ " + cnpj);
+			response.getErrors().add("Empresa não encontrada para o CNPJ " + cnpj);
 			return ResponseEntity.badRequest().body(response);
 		}
 
@@ -53,18 +52,9 @@ public class EmpresaController {
 		return ResponseEntity.ok(response);
 	}
 
-    /**
-        Retorna todas as empresas cadastradas
-     */
-    @RequestMapping
-    public List<Empresa> findCities() {
-        List<Empresa> empresas = (List<Empresa>) empresaService.findAll();
-        return empresas;
-    }
-
 	/**
 	 * Popula um DTO com os dados de uma empresa.
-	 *
+	 * 
 	 * @param empresa
 	 * @return EmpresaDto
 	 */

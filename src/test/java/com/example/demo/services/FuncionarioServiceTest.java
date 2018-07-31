@@ -24,46 +24,46 @@ import com.example.demo.repositories.FuncionarioRepository;
 @ActiveProfiles("test")
 public class FuncionarioServiceTest {
 
-    @MockBean
-    private FuncionarioRepository funcionarioRepository;
+	@MockBean
+	private FuncionarioRepository funcionarioRepository;
 
-    @Autowired
-    private FuncionarioService funcionarioService;
+	@Autowired
+	private FuncionarioService funcionarioService;
 
-    @Before
-    public void setUp() throws Exception {
-        BDDMockito.given(this.funcionarioRepository.save(Mockito.any(Funcionario.class))).willReturn(new Funcionario());
-        BDDMockito.given(this.funcionarioRepository.findOne(Mockito.anyLong())).willReturn(new Funcionario());
-        BDDMockito.given(this.funcionarioRepository.findByEmail(Mockito.anyString())).willReturn(new Funcionario());
-        BDDMockito.given(this.funcionarioRepository.findByCpf(Mockito.anyString())).willReturn(new Funcionario());
-    }
+	@Before
+	public void setUp() throws Exception {
+		BDDMockito.given(this.funcionarioRepository.save(Mockito.any(Funcionario.class))).willReturn(new Funcionario());
+		BDDMockito.given(this.funcionarioRepository.findOne(Mockito.anyLong())).willReturn(new Funcionario());
+		BDDMockito.given(this.funcionarioRepository.findByEmail(Mockito.anyString())).willReturn(new Funcionario());
+		BDDMockito.given(this.funcionarioRepository.findByCpf(Mockito.anyString())).willReturn(new Funcionario());
+	}
 
-    @Test
-    public void testPersistirFuncionario() {
-        Funcionario funcionario = this.funcionarioService.persistir(new Funcionario());
+	@Test
+	public void testPersistirFuncionario() {
+		Funcionario funcionario = this.funcionarioService.persistir(new Funcionario());
 
-        assertNotNull(funcionario);
-    }
+		assertNotNull(funcionario);
+	}
 
-    @Test
-    public void testBuscarFuncionarioPorId() {
-        Optional<Funcionario> funcionario = this.funcionarioService.buscarPorId(1L);
+	@Test
+	public void testBuscarFuncionarioPorId() {
+		Optional<Funcionario> funcionario = this.funcionarioService.buscarPorId(1L);
 
-        assertTrue(funcionario.isPresent());
-    }
+		assertTrue(funcionario.isPresent());
+	}
 
-    @Test
-    public void testBuscarFuncionarioPorEmail() {
-        Optional<Funcionario> funcionario = this.funcionarioService.buscarPorEmail("email@email.com");
+	@Test
+	public void testBuscarFuncionarioPorEmail() {
+		Optional<Funcionario> funcionario = this.funcionarioService.buscarPorEmail("email@email.com");
 
-        assertTrue(funcionario.isPresent());
-    }
+		assertTrue(funcionario.isPresent());
+	}
 
-    @Test
-    public void testBuscarFuncionarioPorCpf() {
-        Optional<Funcionario> funcionario = this.funcionarioService.buscarPorCpf("24291173474");
+	@Test
+	public void testBuscarFuncionarioPorCpf() {
+		Optional<Funcionario> funcionario = this.funcionarioService.buscarPorCpf("24291173474");
 
-        assertTrue(funcionario.isPresent());
-    }
+		assertTrue(funcionario.isPresent());
+	}
 
 }
